@@ -211,5 +211,5 @@ elPrevent.addEventListener('click', handlePrevPage)
 
 
 elForm.addEventListener('submit', hendelFilter);
-renderMovies(KINOLAR.slice(0, 8))
+renderMovies(KINOLAR.slice(0, 9))
 renderBoocmarks(bookmarks);
