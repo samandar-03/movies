@@ -15,6 +15,8 @@ const elTitle = document.querySelector('.modal_title')
 const eltext = document.querySelector('.modal_text')
 const elImg = document.querySelector('.img_modal')
 
+const elWrapper =  document.createDocumentFragment()
+
 const elCardTemplate = document.getElementById('cardTemplate').content;
 const sortFunction = {
     az: (a, b) => {
@@ -111,7 +113,8 @@ let renderMovies = (arr) => {
         text.textContent = movie.summary;
         title.textContent = movie.title;
     
-        elList.appendChild(elCard);
+        elList.appendChild(elWrapper);
+        elWrapper.appendChild(elCard);
     });
 }
 
