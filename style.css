@@ -35,6 +35,10 @@
     padding-top: 60px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.img{
+    width: 100%; 
+    margin: 0 auto;
+ }
 
 @media only screen and (max-width: 570px) {
     .form-js{
