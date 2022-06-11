@@ -68,7 +68,6 @@ let maxPageCount = Math.ceil(KINOLAR.length / limt);
 
 let bookmarks =  localStorage.getItem('bookmarks') ? JSON.parse(localStorage.getItem('bookmarks')) : [] ;
 
-
 let getMovieGanres = (kinolar) => {
     let categories = [];
     kinolar.forEach((kino) => {
@@ -116,8 +115,6 @@ let renderMovies = (arr) => {
         elWrapper.appendChild(elCard);
     });
 }
-
-
 
 let hendelFilter = (evt) => {
     evt.preventDefault();
@@ -205,29 +202,23 @@ let hendelListEvend = (evt) => {
     }
 };
 
-elList.addEventListener('click', hendelListEvend)
-elNextBtn.addEventListener('click', handleNextPage)
-elPrevent.addEventListener('click', handlePrevPage)
-
-            
-        
-
 elForm.addEventListener('submit', hendelFilter);
-renderMovies(KINOLAR.slice(0, 10))
+renderMovies(KINOLAR.slice(0, 9))
 renderBoocmarks(bookmarks);
 
-
 let Delete_btn = (evt) => {
+    
     if (evt.target.matches('.remove_btn')) {
         let deleteItem = evt.target.closest('li')
         deleteBoocmark = bookmarks.filter(evt => evt.imdbId !== deleteItem.dataset.id)
         localStorage.setItem('bookmarks', JSON.stringify(deleteBoocmark))
         bookmarks = deleteBoocmark;
         renderBoocmarks(deleteBoocmark)
-
-        console.log(deleteBoocmark);
     }
 }
 
 let delete_btn= elBoocmark.cloneNode(true) 
+elList.addEventListener('click', hendelListEvend)
+elNextBtn.addEventListener('click', handleNextPage)
+elPrevent.addEventListener('click', handlePrevPage)
 elBoocmarkList.addEventListener('click', Delete_btn)
