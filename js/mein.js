@@ -10,7 +10,6 @@ const elPageItem = document.querySelector('.link')
 const elBoocmark = document.getElementById('boocmark-js').content;
 const elBoocmarkTitle = document.querySelector('.Boocmark_title')
 const elBoocmarkList = document.querySelector('.boocmark_list')
-const elRemove = document.querySelector('.Remove')
 const elTitle = document.querySelector('.modal_title')
 const eltext = document.querySelector('.modal_text')
 const elImg = document.querySelector('.img_modal')
@@ -174,6 +173,8 @@ let renderBoocmarks = (arr) => {
     arr.forEach(Boocmark => {
         let BoocmarkClone = elBoocmark.cloneNode(true)
         let title = BoocmarkClone.querySelector('.Boocmark_title')
+        let boocmarkItem = BoocmarkClone.querySelector('.rounded-end')
+        boocmarkItem.dataset.id = Boocmark.imdbId;
         title.textContent = Boocmark.title;
         boocmarkWrapper.appendChild(BoocmarkClone);
     });
@@ -202,14 +203,31 @@ let hendelListEvend = (evt) => {
     eltext.textContent = foundMovie.summary;
     elTitle.textContent =  foundMovie.title;
     }
-}
-
+};
 
 elList.addEventListener('click', hendelListEvend)
 elNextBtn.addEventListener('click', handleNextPage)
 elPrevent.addEventListener('click', handlePrevPage)
 
+            
+        
 
 elForm.addEventListener('submit', hendelFilter);
-renderMovies(KINOLAR.slice(0, 9))
+renderMovies(KINOLAR.slice(0, 10))
 renderBoocmarks(bookmarks);
+
+
+let Delete_btn = (evt) => {
+    if (evt.target.matches('.remove_btn')) {
+        let deleteItem = evt.target.closest('li')
+        deleteBoocmark = bookmarks.filter(evt => evt.imdbId !== deleteItem.dataset.id)
+        localStorage.setItem('bookmarks', JSON.stringify(deleteBoocmark))
+        bookmarks = deleteBoocmark;
+        renderBoocmarks(deleteBoocmark)
+
+        console.log(deleteBoocmark);
+    }
+}
+
+let delete_btn= elBoocmark.cloneNode(true) 
+elBoocmarkList.addEventListener('click', Delete_btn)
